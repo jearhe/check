@@ -153,12 +153,7 @@ class BiliBiliCheckIn(object):
         keyword str 关键字，默认为空
         """
         params = {
-            "mid": uid,
-            "pn": pn,
-            "ps": ps,
-            "tid": tid,
-            "order": order,
-            "keyword": keyword,
+            "mid": uid
         }
         url = f"https://api.bilibili.com/x/space/arc/search"
         ret = session.get(url=url, params=params).json()
@@ -166,7 +161,7 @@ class BiliBiliCheckIn(object):
             {"aid": one.get("aid"), "cid": 0, "title": one.get("title"), "owner": one.get("author")}
             for one in ret.get("data", {}).get("list", {}).get("vlist", [])
         ]
-        return data_list
+        return data_list[0:3]
 
     @staticmethod
     def elec_pay(session, bili_jct, uid: int, num: int = 50) -> dict:
@@ -268,7 +263,7 @@ class BiliBiliCheckIn(object):
             coins_av_count = reward_ret.get("data", {}).get("coins_av") // 10
             coin_num = coin_num - coins_av_count
             coin_num = coin_num if coin_num < coin else coin
-            if coin_type == 1 and coin_num:
+            if coin_type == 1:
                 following_list = self.get_followings(session=session, uid=uid)
                 for following in following_list.get("data", {}).get("list"):
                     mid = following.get("mid")
@@ -293,6 +288,7 @@ class BiliBiliCheckIn(object):
                 coin_msg = f"今日成功投币{success_count + coins_av_count}/{self.check_item.get('coin_num', 5)}个"
             else:
                 coin_msg = f"今日成功投币{coins_av_count}/{self.check_item.get('coin_num', 5)}个"
+            aid_list=aid_list[::-1]
             aid = aid_list[0].get("aid")
             cid = aid_list[0].get("cid")
             title = aid_list[0].get("title")
