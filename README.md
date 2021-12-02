@@ -40,7 +40,7 @@
 
 ```
 pip3 install requests rsa
-ql repo https://github.com/yuxian158/check.git "ck_" "" "checksendNotify|getENV"
+ql repo https://github.com/jearhe/check.git "ck_" "" "checksendNotify|getENV"
 cp /ql/repo/yuxian158_check/config.json /ql/config/check.json
 ```
 
