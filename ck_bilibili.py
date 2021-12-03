@@ -288,7 +288,6 @@ class BiliBiliCheckIn(object):
                 coin_msg = f"今日成功投币{success_count + coins_av_count}/{self.check_item.get('coin_num', 5)}个"
             else:
                 coin_msg = f"今日成功投币{coins_av_count}/{self.check_item.get('coin_num', 5)}个"
-            aid_list=aid_list[::-1]
             aid = aid_list[0].get("aid")
             cid = aid_list[0].get("cid")
             title = aid_list[0].get("title")
