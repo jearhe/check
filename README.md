@@ -41,7 +41,7 @@
 ```
 pip3 install requests rsa
 ql repo https://github.com/jearhe/check.git "ck_" "" "checksendNotify|getENV"
-cp /ql/repo/yuxian158_check/config.json /ql/config/check.json
+cp /ql/repo/jearhe/config.json /ql/config/check.json
 ```
 
 ### 2.配置
